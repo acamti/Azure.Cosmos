@@ -9,7 +9,7 @@
     
     <Version>1.1.1</Version>
     <Description>Provides extension methods to facilitate dependency injections</Description>
-    <PackageTags>cosmos, cosmosdb, azure, microsoft, dependency, injection, dependencyinjection</PackageTags>
+    <PackageTags>cosmosdb, azure, microsoft, dependencyinjection</PackageTags>
     
     <Authors>Manel Mayer</Authors>
     <Copyright>ACAM Services et Conseils TI</Copyright>
