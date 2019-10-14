@@ -2,14 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"> 
   <metadata> 
     <id>Acamti.Azure.Cosmos.DependencyInjection</id> 
-    <version>1.1.2</version> 
+    <version>2.0.0</version> 
     <title>Acamti.Azure.Cosmos.DependencyInjection</title> 
     <authors>Manel Mayer</authors> 
-    <owners>Manel Mayer</owners> 
+    <owners>ACAM Services et Conseils TI</owners> 
     <requireLicenseAcceptance>false</requireLicenseAcceptance> 
 	<licenseUrl>https://github.com/acamti/Azure.Cosmos.DependencyInjection/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://www.nuget.org/packages/Acamti.Azure.Cosmos.DependencyInjection/</projectUrl> 
-    <description>Provides extension methods to facilitate dependency injections</description> 
+    <description>Provides extension method to facilitate dependency injections</description> 
     <copyright>ACAM Services et Conseils TI</copyright> 
     <tags>cosmos, cosmosdb, azure, microsoft, dependency, injection, dependencyinjection</tags> 
     <repository type="git" url="https://github.com/acamti/Azure.Cosmos.DependencyInjection" /> 

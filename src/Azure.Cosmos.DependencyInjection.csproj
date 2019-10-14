@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk"> 
  
   <PropertyGroup> 
-    <TargetFramework>netstandard2.0</TargetFramework> 
+    <TargetFramework>netstandard2.1</TargetFramework> 
      
     <AssemblyName>Acamti.Azure.Cosmos.DependencyInjection</AssemblyName> 
     <RootNamespace>Acamti.Azure.Cosmos.DependencyInjection</RootNamespace> 
@@ -9,6 +9,6 @@
  
   <ItemGroup> 
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.3.1" /> 
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" /> 
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.0.0" /> 
   </ItemGroup> 
 </Project> 
