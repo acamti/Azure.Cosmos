@@ -1,21 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?> 
-<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"> 
-  <metadata> 
-    <id>Acamti.Azure.Cosmos.DependencyInjection</id> 
-    <version>2.1.0</version> 
-    <title>Acamti.Azure.Cosmos.DependencyInjection</title> 
-    <authors>Manel Mayer</authors> 
-    <owners>ACAM Services et Conseils TI</owners> 
-    <requireLicenseAcceptance>false</requireLicenseAcceptance> 
-	<licenseUrl>https://github.com/acamti/Azure.Cosmos.DependencyInjection/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://www.nuget.org/packages/Acamti.Azure.Cosmos.DependencyInjection/</projectUrl> 
-    <description>Provides extension method to facilitate dependency injections</description> 
-    <copyright>ACAM Services et Conseils TI</copyright> 
-    <tags>cosmos, cosmosdb, azure, microsoft, dependency, injection, dependencyinjection</tags> 
-    <repository type="git" url="https://github.com/acamti/Azure.Cosmos.DependencyInjection" /> 
+<?xml version="1.0" encoding="utf-8"?>
+
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Acamti.Azure.Cosmos</id>
+    <version>3.0.0</version>
+    <title>Acamti.Azure.Cosmos</title>
+    <authors>Manuel Mayer</authors>
+    <owners>ACAM Services et Conseils TI</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/acamti/Azure.Cosmos/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://www.nuget.org/packages/Acamti.Azure.Cosmos/</projectUrl>
+    <description>Provides helper classes and extension method to facilitate comsosDb usage</description>
+    <copyright>ACAM Services et Conseils TI</copyright>
+    <tags>cosmos, cosmosdb, azure, microsoft, dependency, injection, dependencyinjection</tags>
+    <repository type="git" url="https://github.com/acamti/Azure.Cosmos" />
     <dependencies>
-      <dependency id="Microsoft.Azure.Cosmos" version="3.3.2" />
-      <dependency id="Microsoft.Extensions.DependencyInjection.Abstractions" version="3.0.0" />
+      <dependency id="Microsoft.Azure.Cosmos" version="3.6.0" />
+      <dependency id="Microsoft.Extensions.DependencyInjection.Abstractions" version="3.1.2" />
     </dependencies>
-  </metadata> 
+  </metadata>
 </package>
