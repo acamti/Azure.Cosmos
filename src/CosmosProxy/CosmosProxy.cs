@@ -41,13 +41,14 @@ namespace Acamti.Azure.Cosmos.CosmosProxy
 
         public async Task<TDocument> GetDocumentAsync<TDocument>(
             Func<IQueryable<TDocument>,
-                IQueryable<TDocument>> conditionBuilder,
+                IQueryable<TDocument>> conditionBuilder = null,
             QueryRequestOptions requestOptions = null
         ) where TDocument : class
         {
-            FeedIterator<TDocument> feedIterator = conditionBuilder(
-                _container.GetItemLinqQueryable<TDocument>(requestOptions: requestOptions)
-            ).ToFeedIterator();
+            FeedIterator<TDocument> feedIterator = (conditionBuilder is null
+                    ? _container.GetItemLinqQueryable<TDocument>(requestOptions: requestOptions)
+                    : conditionBuilder(_container.GetItemLinqQueryable<TDocument>(requestOptions: requestOptions))
+                ).ToFeedIterator();
 
             while (feedIterator.HasMoreResults)
             {
@@ -62,15 +63,16 @@ namespace Acamti.Azure.Cosmos.CosmosProxy
 
         public async Task<IEnumerable<TDocument>> GetDocumentsAsync<TDocument>(
             Func<IQueryable<TDocument>,
-                IQueryable<TDocument>> conditionBuilder,
+                IQueryable<TDocument>> conditionBuilder = null,
             QueryRequestOptions requestOptions = null
         ) where TDocument : class
         {
             var docList = new List<TDocument>();
 
-            FeedIterator<TDocument> feedIterator = conditionBuilder(
-                _container.GetItemLinqQueryable<TDocument>(requestOptions: requestOptions)
-            ).ToFeedIterator();
+            FeedIterator<TDocument> feedIterator = (conditionBuilder is null
+                    ? _container.GetItemLinqQueryable<TDocument>(requestOptions: requestOptions)
+                    : conditionBuilder(_container.GetItemLinqQueryable<TDocument>(requestOptions: requestOptions))
+                ).ToFeedIterator();
 
             while (feedIterator.HasMoreResults)
             {
@@ -82,13 +84,14 @@ namespace Acamti.Azure.Cosmos.CosmosProxy
 
         public async IAsyncEnumerable<TDocument> GetDocumentsIteratorAsync<TDocument>(
             Func<IQueryable<TDocument>,
-                IQueryable<TDocument>> conditionBuilder,
+                IQueryable<TDocument>> conditionBuilder = null,
             QueryRequestOptions requestOptions = null
         ) where TDocument : class
         {
-            FeedIterator<TDocument> feedIterator = conditionBuilder(
-                _container.GetItemLinqQueryable<TDocument>(requestOptions: requestOptions)
-            ).ToFeedIterator();
+            FeedIterator<TDocument> feedIterator = (conditionBuilder is null
+                    ? _container.GetItemLinqQueryable<TDocument>(requestOptions: requestOptions)
+                    : conditionBuilder(_container.GetItemLinqQueryable<TDocument>(requestOptions: requestOptions))
+                ).ToFeedIterator();
 
             while (feedIterator.HasMoreResults)
             {
