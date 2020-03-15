@@ -25,20 +25,20 @@ namespace Acamti.Azure.Cosmos.CosmosProxy
         ) where TDocument : class;
 
         Task<TDocument> GetDocumentAsync<TDocument>(
-            Func<IOrderedQueryable<TDocument>,
-                IOrderedQueryable<TDocument>> conditionBuilder,
+            Func<IQueryable<TDocument>,
+                IQueryable<TDocument>> conditionBuilder,
             QueryRequestOptions requestOptions = null
         ) where TDocument : class;
 
         IAsyncEnumerable<TDocument> GetDocumentsIteratorAsync<TDocument>(
-            Func<IOrderedQueryable<TDocument>,
-                IOrderedQueryable<TDocument>> conditionBuilder,
+            Func<IQueryable<TDocument>,
+                IQueryable<TDocument>> conditionBuilder,
             QueryRequestOptions requestOptions = null
         ) where TDocument : class;
 
         Task<IEnumerable<TDocument>> GetDocumentsAsync<TDocument>(
-            Func<IOrderedQueryable<TDocument>,
-                IOrderedQueryable<TDocument>> conditionBuilder,
+            Func<IQueryable<TDocument>,
+                IQueryable<TDocument>> conditionBuilder,
             QueryRequestOptions requestOptions = null
         ) where TDocument : class;
     }
