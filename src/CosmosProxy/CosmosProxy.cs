@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Linq;
@@ -17,26 +18,45 @@ namespace Acamti.Azure.Cosmos.CosmosProxy
             _container = client.GetContainer(databaseId, containerId);
         }
 
-        public Task<ItemResponse<TDocument>> CreateDocumentAsync<TDocument>(TDocument document, PartitionKey partitionKey)
-            where TDocument : class =>
+        public Task<ItemResponse<TDocument>> CreateDocumentAsync<TDocument>(
+            TDocument document,
+            PartitionKey partitionKey,
+            ItemRequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default
+        ) where TDocument : class =>
             _container.CreateItemAsync(
                 document,
-                partitionKey
+                partitionKey,
+                requestOptions,
+                cancellationToken
             );
 
-        public Task<ItemResponse<TDocument>> ReplaceDocumentAsync<TDocument>(TDocument document, string documentId, PartitionKey partitionKey)
-            where TDocument : class =>
+        public Task<ItemResponse<TDocument>> ReplaceDocumentAsync<TDocument>(
+            TDocument document,
+            string documentId,
+            PartitionKey partitionKey,
+            ItemRequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default
+        ) where TDocument : class =>
             _container.ReplaceItemAsync(
                 document,
                 documentId,
-                partitionKey
+                partitionKey,
+                requestOptions,
+                cancellationToken
             );
 
-        public Task<ItemResponse<TDocument>> UpsertDocumentAsync<TDocument>(TDocument document, PartitionKey partitionKey)
-            where TDocument : class =>
+        public Task<ItemResponse<TDocument>> UpsertDocumentAsync<TDocument>(
+            TDocument document,
+            PartitionKey partitionKey,
+            ItemRequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default
+        ) where TDocument : class =>
             _container.UpsertItemAsync(
                 document,
-                partitionKey
+                partitionKey,
+                requestOptions,
+                cancellationToken
             );
 
         public async Task<TDocument> GetDocumentAsync<TDocument>(

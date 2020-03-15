@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
 
@@ -10,18 +11,24 @@ namespace Acamti.Azure.Cosmos.CosmosProxy
     {
         Task<ItemResponse<TDocument>> CreateDocumentAsync<TDocument>(
             TDocument document,
-            PartitionKey partitionKey
+            PartitionKey partitionKey,
+            ItemRequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default
         ) where TDocument : class;
 
         Task<ItemResponse<TDocument>> ReplaceDocumentAsync<TDocument>(
             TDocument document,
             string documentId,
-            PartitionKey partitionKey
+            PartitionKey partitionKey,
+            ItemRequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default
         ) where TDocument : class;
 
         Task<ItemResponse<TDocument>> UpsertDocumentAsync<TDocument>(
             TDocument document,
-            PartitionKey partitionKey
+            PartitionKey partitionKey,
+            ItemRequestOptions requestOptions = null,
+            CancellationToken cancellationToken = default
         ) where TDocument : class;
 
         Task<TDocument> GetDocumentAsync<TDocument>(
