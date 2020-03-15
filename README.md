@@ -1,4 +1,4 @@
-# Azure.Cosmos
+# Acamti.Azure.Cosmos
 Add CosmosProxy to your project.
 
 [![Build Status](https://dev.azure.com/acamti/OpenSource/_apis/build/status/Nugets/Nuget-Azure.Cosmos?branchName=master)](https://dev.azure.com/acamti/OpenSource/_build/latest?definitionId=1&branchName=master)
