@@ -13,17 +13,14 @@ namespace Acamti.Azure.Cosmos.CosmosProxy
     {
         private readonly Container _container;
 
-        internal CosmosProxy(CosmosClient client, string databaseId, string containerId)
-        {
+        internal CosmosProxy(CosmosClient client, string databaseId, string containerId) =>
             _container = client.GetContainer(databaseId, containerId);
-        }
 
-        public Task<ItemResponse<TDocument>> CreateDocumentAsync<TDocument>(
-            TDocument document,
-            PartitionKey partitionKey,
-            ItemRequestOptions requestOptions = null,
-            CancellationToken cancellationToken = default
-        ) where TDocument : class =>
+        public Task<ItemResponse<TDocument>> CreateDocumentAsync<TDocument>(TDocument document,
+                                                                            PartitionKey partitionKey,
+                                                                            ItemRequestOptions requestOptions = null,
+                                                                            CancellationToken cancellationToken = default)
+            where TDocument : class =>
             _container.CreateItemAsync(
                 document,
                 partitionKey,
@@ -31,13 +28,12 @@ namespace Acamti.Azure.Cosmos.CosmosProxy
                 cancellationToken
             );
 
-        public Task<ItemResponse<TDocument>> ReplaceDocumentAsync<TDocument>(
-            TDocument document,
-            string documentId,
-            PartitionKey partitionKey,
-            ItemRequestOptions requestOptions = null,
-            CancellationToken cancellationToken = default
-        ) where TDocument : class =>
+        public Task<ItemResponse<TDocument>> ReplaceDocumentAsync<TDocument>(TDocument document,
+                                                                             string documentId,
+                                                                             PartitionKey partitionKey,
+                                                                             ItemRequestOptions requestOptions = null,
+                                                                             CancellationToken cancellationToken = default)
+            where TDocument : class =>
             _container.ReplaceItemAsync(
                 document,
                 documentId,
@@ -46,12 +42,11 @@ namespace Acamti.Azure.Cosmos.CosmosProxy
                 cancellationToken
             );
 
-        public Task<ItemResponse<TDocument>> UpsertDocumentAsync<TDocument>(
-            TDocument document,
-            PartitionKey partitionKey,
-            ItemRequestOptions requestOptions = null,
-            CancellationToken cancellationToken = default
-        ) where TDocument : class =>
+        public Task<ItemResponse<TDocument>> UpsertDocumentAsync<TDocument>(TDocument document,
+                                                                            PartitionKey partitionKey,
+                                                                            ItemRequestOptions requestOptions = null,
+                                                                            CancellationToken cancellationToken = default)
+            where TDocument : class =>
             _container.UpsertItemAsync(
                 document,
                 partitionKey,
@@ -59,39 +54,35 @@ namespace Acamti.Azure.Cosmos.CosmosProxy
                 cancellationToken
             );
 
-        public async Task<TDocument> GetDocumentAsync<TDocument>(
-            string id,
-            PartitionKey partitionKey,
-            ItemRequestOptions requestOptions = null
-        ) where TDocument : class =>
+        public async Task<TDocument> GetDocumentAsync<TDocument>(string id,
+                                                                 PartitionKey partitionKey,
+                                                                 ItemRequestOptions requestOptions = null)
+            where TDocument : class =>
             await _container.ReadItemAsync<TDocument>(id, partitionKey, requestOptions);
 
-        public async Task<IEnumerable<TDocument>> GetDocumentsAsync<TDocument>(
-            Func<IQueryable<TDocument>,
-                IQueryable<TDocument>> conditionBuilder = null,
-            QueryRequestOptions requestOptions = null
-        ) where TDocument : class
+        public async Task<IEnumerable<TDocument>> GetDocumentsAsync<TDocument>(Func<IQueryable<TDocument>,
+                                                                                   IQueryable<TDocument>> conditionBuilder = null,
+                                                                               QueryRequestOptions requestOptions = null)
+            where TDocument : class
         {
             var docList = new List<TDocument>();
 
-            FeedIterator<TDocument> feedIterator = (conditionBuilder is null
+            FeedIterator<TDocument> feedIterator = (
+                conditionBuilder is null
                     ? _container.GetItemLinqQueryable<TDocument>(requestOptions: requestOptions)
                     : conditionBuilder(_container.GetItemLinqQueryable<TDocument>(requestOptions: requestOptions))
-                ).ToFeedIterator();
+            ).ToFeedIterator();
 
             while (feedIterator.HasMoreResults)
-            {
                 docList.AddRange(await feedIterator.ReadNextAsync());
-            }
 
             return docList;
         }
 
-        public async IAsyncEnumerable<TDocument> GetDocumentsIteratorAsync<TDocument>(
-            Func<IQueryable<TDocument>,
-                IQueryable<TDocument>> conditionBuilder = null,
-            QueryRequestOptions requestOptions = null
-        ) where TDocument : class
+        public async IAsyncEnumerable<TDocument> GetDocumentsIteratorAsync<TDocument>(Func<IQueryable<TDocument>,
+                                                                                          IQueryable<TDocument>> conditionBuilder = null,
+                                                                                      QueryRequestOptions requestOptions = null)
+            where TDocument : class
         {
             FeedIterator<TDocument> feedIterator = (conditionBuilder is null
                     ? _container.GetItemLinqQueryable<TDocument>(requestOptions: requestOptions)
@@ -99,12 +90,8 @@ namespace Acamti.Azure.Cosmos.CosmosProxy
                 ).ToFeedIterator();
 
             while (feedIterator.HasMoreResults)
-            {
                 foreach (TDocument doc in await feedIterator.ReadNextAsync())
-                {
                     yield return doc;
-                }
-            }
         }
     }
 }

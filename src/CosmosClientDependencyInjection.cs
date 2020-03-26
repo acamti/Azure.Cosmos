@@ -7,11 +7,9 @@ namespace Acamti.Azure.Cosmos
 {
     public static class CosmosClientDependencyInjection
     {
-        public static IServiceCollection AddCosmosProxy(
-            this IServiceCollection services,
-            Func<CosmosProxyConfiguration> configuration,
-            CosmosClientOptions clientOptions = null
-        )
+        public static IServiceCollection AddCosmosProxy(this IServiceCollection services,
+                                                        Func<CosmosProxyConfiguration> configuration,
+                                                        CosmosClientOptions clientOptions = null)
         {
             CosmosProxyConfiguration conf = configuration.Invoke();
 
