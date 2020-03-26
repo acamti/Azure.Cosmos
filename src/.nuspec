@@ -3,7 +3,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Acamti.Azure.Cosmos</id>
-    <version>4.0.0</version>
+    <version>4.0.1</version>
     <title>Acamti.Azure.Cosmos</title>
     <authors>Manuel Mayer</authors>
     <owners>ACAM Services et Conseils TI</owners>
