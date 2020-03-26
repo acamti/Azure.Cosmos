@@ -60,26 +60,11 @@ namespace Acamti.Azure.Cosmos.CosmosProxy
             );
 
         public async Task<TDocument> GetDocumentAsync<TDocument>(
-            Func<IQueryable<TDocument>,
-                IQueryable<TDocument>> conditionBuilder = null,
-            QueryRequestOptions requestOptions = null
-        ) where TDocument : class
-        {
-            FeedIterator<TDocument> feedIterator = (conditionBuilder is null
-                    ? _container.GetItemLinqQueryable<TDocument>(requestOptions: requestOptions)
-                    : conditionBuilder(_container.GetItemLinqQueryable<TDocument>(requestOptions: requestOptions))
-                ).ToFeedIterator();
-
-            while (feedIterator.HasMoreResults)
-            {
-                foreach (TDocument document in await feedIterator.ReadNextAsync())
-                {
-                    return document;
-                }
-            }
-
-            return null;
-        }
+            string id,
+            PartitionKey partitionKey,
+            ItemRequestOptions requestOptions = null
+        ) where TDocument : class =>
+            await _container.ReadItemAsync<TDocument>(id, partitionKey, requestOptions);
 
         public async Task<IEnumerable<TDocument>> GetDocumentsAsync<TDocument>(
             Func<IQueryable<TDocument>,
