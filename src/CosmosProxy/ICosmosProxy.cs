@@ -28,9 +28,9 @@ namespace Acamti.Azure.Cosmos.CosmosProxy
                                                                      CancellationToken cancellationToken = default)
             where TDocument : class;
 
-        Task<TDocument> GetDocumentAsync<TDocument>(string id,
-                                                    PartitionKey partitionKey,
-                                                    ItemRequestOptions requestOptions = null)
+        Task<ItemResponse<TDocument>> GetDocumentAsync<TDocument>(string id,
+                                                                  PartitionKey partitionKey,
+                                                                  ItemRequestOptions requestOptions = null)
             where TDocument : class;
 
         IAsyncEnumerable<TDocument> GetDocumentsIteratorAsync<TDocument>(Func<IQueryable<TDocument>,

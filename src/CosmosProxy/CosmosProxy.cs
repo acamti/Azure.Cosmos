@@ -9,7 +9,6 @@ using Microsoft.Azure.Cosmos.Linq;
 namespace Acamti.Azure.Cosmos.CosmosProxy
 {
     public class CosmosProxy : ICosmosProxy
-
     {
         private readonly Container _container;
 
@@ -54,11 +53,10 @@ namespace Acamti.Azure.Cosmos.CosmosProxy
                 cancellationToken
             );
 
-        public async Task<TDocument> GetDocumentAsync<TDocument>(string id,
-                                                                 PartitionKey partitionKey,
-                                                                 ItemRequestOptions requestOptions = null)
-            where TDocument : class =>
-            await _container.ReadItemAsync<TDocument>(id, partitionKey, requestOptions);
+        public Task<ItemResponse<TDocument>> GetDocumentAsync<TDocument>(string id,
+                                                                         PartitionKey partitionKey,
+                                                                         ItemRequestOptions requestOptions = null)
+            where TDocument : class => _container.ReadItemAsync<TDocument>(id, partitionKey, requestOptions);
 
         public async Task<IEnumerable<TDocument>> GetDocumentsAsync<TDocument>(Func<IQueryable<TDocument>,
                                                                                    IQueryable<TDocument>> conditionBuilder = null,
@@ -90,8 +88,10 @@ namespace Acamti.Azure.Cosmos.CosmosProxy
                 ).ToFeedIterator();
 
             while (feedIterator.HasMoreResults)
+            {
                 foreach (TDocument doc in await feedIterator.ReadNextAsync())
                     yield return doc;
+            }
         }
     }
 }
