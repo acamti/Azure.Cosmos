@@ -9,11 +9,13 @@ Add CosmosProxy to your project.
 ## Usage
 
 In your AppSettings.json file
+
 ```json
-"CosmosDb:ConnectionString":
-      "AccountEndpoint=https://...",```
+"CosmosDb:ConnectionString": "AccountEndpoint=https://..."
+```
 
 In your startup.cs file
+
 ```csharp
 .AddCosmosProxy((settings, configuration) => 
     { 
