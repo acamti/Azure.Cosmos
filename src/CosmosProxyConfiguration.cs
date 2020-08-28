@@ -1,4 +1,4 @@
-﻿namespace Acamti.Azure.Cosmos.CosmosProxy
+﻿namespace Acamti.Azure.Cosmos
 {
     public class CosmosProxyConfiguration
     {
