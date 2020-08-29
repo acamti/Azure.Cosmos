@@ -16,7 +16,7 @@
     <RepositoryUrl>https://github.com/acamti/Azure.Cosmos</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>cosmos, cosmosdb, azure, microsoft, dependency, injection, dependencyinjection</PackageTags>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\LICENSE.txt">
+    <None Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
